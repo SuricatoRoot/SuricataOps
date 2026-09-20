@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SuricataOps — Cuéntanos qué necesitas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B3D66; --navy-dark:#082A45; --teal:#00A9BC; --mint:#3AE0C4;
+    --paper:#FAFBFC; --ink:#14202B; --ink-soft:#4A5A66; --line:#E1E8ED; --line-strong:#C7D2DA;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Manrope',-apple-system,sans-serif; background:var(--paper); color:var(--ink);
+    line-height:1.5; -webkit-font-smoothing:antialiased; padding:32px 16px 80px;
+  }
+  .sheet{max-width:660px; margin:0 auto;}
+
+  .brand{display:flex; align-items:center; gap:10px; font-weight:800; font-size:19px; color:var(--navy); margin-bottom:20px;}
+  .brand svg{flex-shrink:0;}
+
+  h1{font-size:23px; font-weight:800; color:var(--navy); margin-bottom:6px; letter-spacing:-0.01em;}
+  .subtitle{font-size:14.5px; color:var(--ink-soft); margin-bottom:26px; max-width:500px;}
+
+  .field{margin-bottom:16px;}
+  .field label{display:block; font-size:13.5px; font-weight:700; color:var(--navy); margin-bottom:6px;}
+  .field label .req{color:#C4432B; margin-left:2px;}
+  .field .hint{font-weight:400; color:var(--ink-soft); font-size:12.5px;}
+  .field input[type="text"], .field input[type="number"], .field textarea{
+    width:100%; border:1.5px solid var(--line-strong); border-radius:8px; padding:11px 13px;
+    font-family:inherit; font-size:14.5px; color:var(--ink); background:#fff;
+  }
+  .field textarea{resize:vertical; min-height:70px;}
+  .field input::placeholder, .field textarea::placeholder{color:#B2BFC9;}
+
+  .row2{display:flex; gap:12px; flex-wrap:wrap;}
+  .row2 .field{flex:1 1 200px;}
+
+  .datos-error{color:#C4432B; font-size:12.5px; margin-top:-8px; margin-bottom:16px; display:none;}
+  .datos-error.show{display:block;}
+
+  .services-title{font-size:13px; font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:0.03em; margin:26px 0 12px;}
+
+  #servicesWrap.services-locked{opacity:0.45; pointer-events:none; position:relative; padding-top:38px;}
+  #servicesWrap.services-locked::before{
+    content:'Completa tus datos arriba para continuar';
+    position:absolute; top:0; left:0; right:0;
+    font-size:12.5px; font-weight:600; color:#C4432B;
+    background:rgba(196,67,43,0.08); border-radius:8px; padding:9px 12px;
+    z-index:2; text-align:center;
+  }
+
+  .svc{
+    border:1.5px solid var(--line); border-radius:12px; margin-bottom:12px; overflow:hidden;
+    transition:border-color .15s ease, opacity .15s ease;
+  }
+  .svc.is-checked{border-color:var(--card-accent, var(--teal));}
+  .svc.is-disabled{opacity:0.4; pointer-events:none;}
+
+  .svc-head{
+    display:flex; align-items:flex-start; gap:11px; padding:14px 16px;
+    background:#fff; cursor:pointer;
+  }
+  .svc.is-checked .svc-head{background:var(--card-accent-bg, rgba(0,169,188,0.06));}
+  .svc-check{margin-top:3px; width:17px; height:17px; accent-color:var(--card-accent, var(--teal)); flex-shrink:0; cursor:pointer;}
+  .svc-titles{flex:1;}
+  .svc-tag{
+    font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:600; color:var(--card-accent, var(--teal));
+    letter-spacing:0.04em; display:block; margin-bottom:2px;
+  }
+  .svc-name{font-size:15px; font-weight:800; color:var(--navy);}
+
+  .svc-options{
+    display:none; flex-direction:column; gap:0; padding:0 16px 14px 44px;
+    background:#fff;
+  }
+  .svc.is-checked .svc-options{display:flex; background:var(--card-accent-bg, rgba(0,169,188,0.06));}
+  .svc-opt{display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--ink); padding:6px 0; cursor:pointer;}
+  .svc-opt input[type="checkbox"]{margin-top:3px; width:15px; height:15px; accent-color:var(--card-accent, var(--teal)); flex-shrink:0;}
+  .svc-opt.opt-disabled{opacity:0.35; pointer-events:none;}
+
+  .svc-detalle{
+    display:none; padding:2px 0 8px 24px;
+  }
+  .svc-detalle.show{display:block;}
+  .svc-detalle label{display:block; font-size:12.5px; font-weight:700; color:var(--navy); margin-bottom:6px;}
+  .svc-detalle textarea{
+    width:100%; border:1.5px solid var(--line-strong); border-radius:8px; padding:10px 12px;
+    font-family:inherit; font-size:13.5px; color:var(--ink); background:#fff; resize:vertical; min-height:60px;
+  }
+
+  .svc-networking{--card-accent:#5B4FC7; --card-accent-bg:rgba(91,79,199,0.07);}
+  .svc-sysadmin{--card-accent:#B4700A; --card-accent-bg:rgba(180,112,10,0.07);}
+  .svc-implementacion{--card-accent:#C4287A; --card-accent-bg:rgba(196,40,122,0.06);}
+  .svc-diagnostico{--card-accent:#00A9BC; --card-accent-bg:rgba(0,169,188,0.07);}
+  .svc-monitoreo{--card-accent:#C4432B; --card-accent-bg:rgba(196,67,43,0.06);}
+  .svc-eficiencia{--card-accent:#1D9A6C; --card-accent-bg:rgba(29,154,108,0.07);}
+  .svc-capacitacion{--card-accent:#D9534F; --card-accent-bg:rgba(217,83,79,0.06);}
+
+  .send-box{
+    margin-top:24px; padding:20px; background:var(--navy); border-radius:12px; text-align:center;
+  }
+  .send-box p{color:#B9D3E5; font-size:13px; margin-bottom:14px; line-height:1.5;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border-radius:8px;
+    font-weight:700; font-size:14.5px; border:none; cursor:pointer; text-decoration:none;
+    background:#25D366; color:#fff;
+  }
+  .btn:hover{background:#1EBE5A;}
+
+  .error{color:#FF9B9B; font-size:12.5px; margin-top:10px; display:none;}
+  .error.show{display:block;}
+
+  @media (max-width:480px){
+    body{padding:20px 14px 60px;}
+    .svc-options{padding-left:16px;}
+    .svc-detalle{padding-left:16px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+  <div class="brand">
+    <svg width="22" height="22" viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M50 2 L92 16 L92 52 C92 78 74 92 50 98 C26 92 8 78 8 52 L8 16 Z" fill="#0B3D66"/>
+      <polyline points="18,52 30,52 37,40 46,66 53,26 60,60 68,52 82,52" fill="none" stroke="#00C2D1" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    SuricataOps
+  </div>
+
+  <h1>Cuéntanos qué necesitas</h1>
+  <p class="subtitle">Completa tus datos y selecciona el servicio que buscas. Con eso te escribimos por WhatsApp con un diagnóstico inicial.</p>
+
+  <div class="row2">
+    <div class="field">
+      <label>Nombre de tu empresa<span class="req">*</span></label>
+      <input type="text" id="empresa" placeholder="Ej: Comercial Rivera SAC">
+    </div>
+    <div class="field">
+      <label>Cantidad de colaboradores<span class="req">*</span></label>
+      <input type="number" id="colaboradores" min="1" placeholder="Ej: 15">
+    </div>
+  </div>
+  <div class="field">
+    <label>Tu nombre<span class="req">*</span></label>
+    <input type="text" id="nombre" placeholder="Nombre y apellido">
+  </div>
+  <div class="datos-error" id="datosError">Completa los tres campos antes de continuar.</div>
+
+  <div id="servicesWrap" class="services-locked">
+  <div class="services-title">Seleccionar requerimiento</div>
+
+  <div class="svc svc-networking" data-key="networking">
+    <label class="svc-head">
+      <input type="checkbox" class="svc-check" data-service="Networking - Diagnóstico de red">
+      <div class="svc-titles">
+        <span class="svc-tag">NETWORKING</span>
+        <span class="svc-name">Diagnóstico de red</span>
+      </div>
+    </label>
+    <div class="svc-options">
+      <label class="svc-opt"><input type="checkbox" value="Revisar reglas de firewall"> Revisar reglas de firewall</label>
+      <label class="svc-opt"><input type="checkbox" value="Configurar segmentación VLAN"> Configurar segmentación VLAN</label>
+      <label class="svc-opt"><input type="checkbox" value="Revisar routers y switches"> Revisar routers y switches</label>
+      <label class="svc-opt"><input type="checkbox" value="Optimizar tablas de enrutamiento"> Optimizar tablas de enrutamiento</label>
+      <label class="svc-opt svc-opt-general"><input type="checkbox" class="opt-general" value="Otros"> Otros</label>
+    </div>
+    <div class="svc-detalle">
+      <label>Describe al detalle el problema o requerimiento</label>
+      <textarea class="detalle-text" placeholder="Cuéntanos qué está pasando con tu red..."></textarea>
+    </div>
+  </div>
+
+  <div class="svc svc-sysadmin" data-key="sysadmin">
+    <label class="svc-head">
+      <input type="checkbox" class="svc-check" data-service="Sysadmin - Soporte técnico remoto">
+      <div class="svc-titles">
+        <span class="svc-tag">SYSADMIN</span>
+        <span class="svc-name">Soporte técnico remoto</span>
+      </div>
+    </label>
+    <div class="svc-options">
+      <label class="svc-opt"><input type="checkbox" value="Servidor con fallas o caídas"> Servidor con fallas o caídas</label>
+      <label class="svc-opt"><input type="checkbox" value="Soporte a usuarios (mesa de ayuda N1)"> Soporte a usuarios (mesa de ayuda N1)</label>
+      <label class="svc-opt"><input type="checkbox" value="Incidentes técnicos complejos (N2/N3)"> Incidentes técnicos complejos (N2/N3)</label>
+      <label class="svc-opt"><input type="checkbox" value="Mantenimiento preventivo periódico"> Mantenimiento preventivo periódico</label>
+      <label class="svc-opt svc-opt-general"><input type="checkbox" class="opt-general" value="Otros"> Otros</label>
+    </div>
+    <div class="svc-detalle">
+      <label>Describe al detalle el problema o requerimiento</label>
+      <textarea class="detalle-text" placeholder="Cuéntanos qué está pasando con tu equipo o servidores..."></textarea>
+    </div>
+  </div>
+
+  <div class="svc svc-implementacion" data-key="implementacion">
+    <label class="svc-head">
+      <input type="checkbox" class="svc-check" data-service="Implementación - Sistemas desde cero">
+      <div class="svc-titles">
+        <span class="svc-tag">IMPLEMENTACIÓN</span>
+        <span class="svc-name">Sistemas desde cero</span>
+      </div>
+    </label>
+    <div class="svc-options">
+      <label class="svc-opt"><input type="checkbox" value="Central telefónica (Asterisk)"> Central telefónica (Asterisk)</label>
+      <label class="svc-opt"><input type="checkbox" value="Call center (VICIdial)"> Call center (VICIdial)</label>
+      <label class="svc-opt"><input type="checkbox" value="Mesa de ayuda / inventario TI (GLPI)"> Mesa de ayuda / inventario TI (GLPI)</label>
+      <label class="svc-opt"><input type="checkbox" value="Monitoreo (Zabbix o Nagios)"> Monitoreo (Zabbix o Nagios)</label>
+      <label class="svc-opt svc-opt-general"><input type="checkbox" class="opt-general" value="Otros"> Otros</label>
+    </div>
+    <div class="svc-detalle">
+      <label>Describe al detalle el problema o requerimiento</label>
+      <textarea class="detalle-text" placeholder="Cuéntanos qué sistema necesitas y para qué..."></textarea>
+    </div>
+  </div>
+
+  <div class="svc svc-diagnostico" data-key="auditoria">
+    <label class="svc-head">
+      <input type="checkbox" class="svc-check" data-service="Ciberseguridad - Auditoría y hardening">
+      <div class="svc-titles">
+        <span class="svc-tag">CIBERSEGURIDAD</span>
+        <span class="svc-name">Auditoría y hardening</span>
+      </div>
+    </label>
+    <div class="svc-options">
+      <label class="svc-opt"><input type="checkbox" value="Detectar vulnerabilidades"> Detectar vulnerabilidades</label>
+      <label class="svc-opt"><input type="checkbox" value="Revisar accesos y permisos"> Revisar accesos y permisos</label>
+      <label class="svc-opt"><input type="checkbox" value="Hardening de servidores"> Hardening de servidores</label>
+      <label class="svc-opt"><input type="checkbox" value="Auditoría completa de seguridad"> Auditoría completa de seguridad</label>
+      <label class="svc-opt svc-opt-general"><input type="checkbox" class="opt-general" value="Otros"> Otros</label>
+    </div>
+    <div class="svc-detalle">
+      <label>Describe al detalle el problema o requerimiento</label>
+      <textarea class="detalle-text" placeholder="Cuéntanos qué te preocupa sobre tu seguridad..."></textarea>
+    </div>
+  </div>
+
+  <div class="svc svc-monitoreo" data-key="soc">
+    <label class="svc-head">
+      <input type="checkbox" class="svc-check" data-service="Ciberseguridad - SOC / NOC 24/7">
+      <div class="svc-titles">
+        <span class="svc-tag">CIBERSEGURIDAD</span>
+        <span class="svc-name">SOC / NOC 24/7</span>
+      </div>
+    </label>
+    <div class="svc-options">
+      <label class="svc-opt"><input type="checkbox" value="Monitoreo continuo de mi red"> Monitoreo continuo de mi red</label>
+      <label class="svc-opt"><input type="checkbox" value="Detección de amenazas en tiempo real"> Detección de amenazas en tiempo real</label>
+      <label class="svc-opt"><input type="checkbox" value="Contención de incidentes activos"> Contención de incidentes activos</label>
+      <label class="svc-opt svc-opt-general"><input type="checkbox" class="opt-general" value="Otros"> Otros</label>
+    </div>
+    <div class="svc-detalle">
+      <label>Describe al detalle el problema o requerimiento</label>
+      <textarea class="detalle-text" placeholder="Cuéntanos qué está pasando..."></textarea>
+    </div>
+  </div>
+
+  <div class="svc svc-eficiencia" data-key="automatizacion">
+    <label class="svc-head">
+      <input type="checkbox" class="svc-check" data-service="Eficiencia - Automatización de procesos">
+      <div class="svc-titles">
+        <span class="svc-tag">EFICIENCIA</span>
+        <span class="svc-name">Automatización de procesos</span>
+      </div>
+    </label>
+    <div class="svc-options">
+      <label class="svc-opt"><input type="checkbox" value="Backups automáticos"> Backups automáticos</label>
+      <label class="svc-opt"><input type="checkbox" value="Alertas automáticas"> Alertas automáticas</label>
+      <label class="svc-opt"><input type="checkbox" value="Reportes automáticos"> Reportes automáticos</label>
+      <label class="svc-opt svc-opt-general"><input type="checkbox" class="opt-general" value="Otros"> Otros</label>
+    </div>
+    <div class="svc-detalle">
+      <label>Describe al detalle el problema o requerimiento</label>
+      <textarea class="detalle-text" placeholder="Cuéntanos qué tarea manual quieres automatizar..."></textarea>
+    </div>
+  </div>
+
+  <div class="svc svc-capacitacion" data-key="capacitacion">
+    <label class="svc-head">
+      <input type="checkbox" class="svc-check" data-service="Ciberseguridad - Capacitación en seguridad">
+      <div class="svc-titles">
+        <span class="svc-tag">CIBERSEGURIDAD</span>
+        <span class="svc-name">Capacitación en seguridad</span>
+      </div>
+    </label>
+    <div class="svc-options">
+      <label class="svc-opt"><input type="checkbox" value="Capacitación en phishing"> Capacitación en phishing</label>
+      <label class="svc-opt"><input type="checkbox" value="Buenas prácticas de contraseñas y accesos"> Buenas prácticas de contraseñas y accesos</label>
+      <label class="svc-opt"><input type="checkbox" value="Capacitación general para todo el equipo"> Capacitación general para todo el equipo</label>
+      <label class="svc-opt svc-opt-general"><input type="checkbox" class="opt-general" value="Otros"> Otros</label>
+    </div>
+    <div class="svc-detalle">
+      <label>Describe al detalle el problema o requerimiento</label>
+      <textarea class="detalle-text" placeholder="Cuéntanos qué necesita tu equipo..."></textarea>
+    </div>
+  </div>
+  </div>
+
+  <div class="error" id="errorMsg">Completa tus datos y selecciona un servicio antes de enviar.</div>
+
+  <div class="send-box">
+    <p>Listo, enviar.</p>
+    <button type="button" class="btn" id="btnEnviar">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.87.51 3.622 1.398 5.122L2 22l4.998-1.372a9.96 9.96 0 0 0 5.006 1.351h.004c5.518 0 10.004-4.486 10.004-10.004C22.012 6.457 17.526 2 12.004 2zm0 18.155h-.003a8.14 8.14 0 0 1-4.152-1.14l-.298-.177-3.087.848.834-3.032-.194-.31a8.14 8.14 0 0 1-1.256-4.34c0-4.51 3.66-8.171 8.16-8.171 2.18 0 4.228.85 5.768 2.393a8.11 8.11 0 0 1 2.39 5.772c0 4.51-3.662 8.157-8.162 8.157z"/></svg>
+      Enviar por WhatsApp
+    </button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var WHATSAPP_NUMBER = "51991721520";
+  var allServices = document.querySelectorAll('.svc');
+  var errorMsg = document.getElementById('errorMsg');
+  var datosError = document.getElementById('datosError');
+  var servicesWrap = document.getElementById('servicesWrap');
+
+  var empresaInput = document.getElementById('empresa');
+  var colaboradoresInput = document.getElementById('colaboradores');
+  var nombreInput = document.getElementById('nombre');
+
+  function datosCompletos(){
+    return empresaInput.value.trim() !== '' &&
+           colaboradoresInput.value.trim() !== '' &&
+           nombreInput.value.trim() !== '';
+  }
+
+  function actualizarBloqueo(){
+    if (datosCompletos()) {
+      servicesWrap.classList.remove('services-locked');
+      datosError.classList.remove('show');
+    } else {
+      servicesWrap.classList.add('services-locked');
+    }
+  }
+
+  [empresaInput, colaboradoresInput, nombreInput].forEach(function(input){
+    input.addEventListener('input', actualizarBloqueo);
+  });
+  actualizarBloqueo();
+
+  // --- Regla 1: solo un servicio puede estar marcado a la vez ---
+  allServices.forEach(function(block){
+    var mainCheck = block.querySelector('.svc-check');
+    var optGeneral = block.querySelector('.opt-general');
+    var otherOpts = block.querySelectorAll('.svc-opt:not(.svc-opt-general) input');
+    var detalle = block.querySelector('.svc-detalle');
+
+    mainCheck.addEventListener('change', function(){
+      if (mainCheck.checked) {
+        // Desmarca y bloquea todos los demás servicios
+        allServices.forEach(function(other){
+          if (other !== block) {
+            other.classList.add('is-disabled');
+            var otherCheck = other.querySelector('.svc-check');
+            otherCheck.checked = false;
+            other.classList.remove('is-checked');
+          }
+        });
+        block.classList.add('is-checked');
+      } else {
+        allServices.forEach(function(other){ other.classList.remove('is-disabled'); });
+        block.classList.remove('is-checked');
+      }
+      errorMsg.classList.remove('show');
+    });
+
+    // --- Regla 2: "No sé exactamente" bloquea las demás opciones y muestra el detalle ---
+    optGeneral.addEventListener('change', function(){
+      if (optGeneral.checked) {
+        otherOpts.forEach(function(opt){
+          opt.checked = false;
+          opt.closest('.svc-opt').classList.add('opt-disabled');
+        });
+        detalle.classList.add('show');
+      } else {
+        otherOpts.forEach(function(opt){
+          opt.closest('.svc-opt').classList.remove('opt-disabled');
+        });
+        detalle.classList.remove('show');
+      }
+    });
+
+    // Si se marca cualquier otra opción específica, se desmarca "No sé exactamente"
+    otherOpts.forEach(function(opt){
+      opt.addEventListener('change', function(){
+        if (opt.checked) {
+          optGeneral.checked = false;
+          detalle.classList.remove('show');
+        }
+      });
+    });
+  });
+
+  // --- Envío ---
+  document.getElementById('btnEnviar').addEventListener('click', function(){
+    var empresa = document.getElementById('empresa').value.trim();
+    var colaboradores = document.getElementById('colaboradores').value.trim();
+    var nombre = document.getElementById('nombre').value.trim();
+
+    if (!empresa || !colaboradores || !nombre) {
+      datosError.classList.add('show');
+      document.getElementById('empresa').focus();
+      return;
+    }
+    datosError.classList.remove('show');
+
+    var selectedBlock = null;
+    allServices.forEach(function(block){
+      if (block.querySelector('.svc-check').checked) selectedBlock = block;
+    });
+
+    if (!selectedBlock) {
+      errorMsg.classList.add('show');
+      return;
+    }
+    errorMsg.classList.remove('show');
+
+    var serviceName = selectedBlock.querySelector('.svc-check').getAttribute('data-service');
+    var checkedOpts = selectedBlock.querySelectorAll('.svc-opt input:checked');
+    var optValues = Array.prototype.map.call(checkedOpts, function(el){ return el.value; });
+    var detalleText = selectedBlock.querySelector('.detalle-text').value.trim();
+
+    var lines = [];
+    lines.push('Hola, quisiera una evaluación con SuricataOps.');
+    lines.push('Empresa: ' + empresa);
+    lines.push('Colaboradores: ' + colaboradores);
+    lines.push('Nombre: ' + nombre);
+    lines.push('');
+    lines.push('Servicio: ' + serviceName);
+    if (optValues.length > 0) {
+      lines.push('Necesito:');
+      optValues.forEach(function(v){ lines.push('  - ' + v); });
+    }
+    if (detalleText) {
+      lines.push('Detalle: ' + detalleText);
+    }
+
+    var text = lines.join('\n');
+    var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(text);
+    window.open(url, '_blank');
+  });
+})();
+</script>
+
+</body>
+</html>
