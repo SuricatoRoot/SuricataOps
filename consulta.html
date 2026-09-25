@@ -99,6 +99,7 @@
   .svc-monitoreo{--card-accent:#C4432B; --card-accent-bg:rgba(196,67,43,0.06);}
   .svc-eficiencia{--card-accent:#1D9A6C; --card-accent-bg:rgba(29,154,108,0.07);}
   .svc-capacitacion{--card-accent:#D9534F; --card-accent-bg:rgba(217,83,79,0.06);}
+  .svc-camaras{--card-accent:#374151; --card-accent-bg:rgba(55,65,81,0.06);}
 
   .send-box{
     margin-top:24px; padding:20px; background:var(--navy); border-radius:12px; text-align:center;
@@ -295,6 +296,27 @@
     <div class="svc-detalle">
       <label>Describe al detalle el problema o requerimiento</label>
       <textarea class="detalle-text" placeholder="Cuéntanos qué necesita tu equipo..."></textarea>
+    </div>
+  </div>
+
+  <div class="svc svc-camaras" data-key="camaras">
+    <label class="svc-head">
+      <input type="checkbox" class="svc-check" data-service="Seguridad física - Cámaras de seguridad">
+      <div class="svc-titles">
+        <span class="svc-tag">SEGURIDAD FÍSICA</span>
+        <span class="svc-name">Cámaras de seguridad</span>
+      </div>
+    </label>
+    <div class="svc-options">
+      <label class="svc-opt"><input type="checkbox" value="Instalación de cámaras desde cero"> Instalación de cámaras desde cero</label>
+      <label class="svc-opt"><input type="checkbox" value="Configuración de cámaras existentes"> Configuración de cámaras existentes</label>
+      <label class="svc-opt"><input type="checkbox" value="Acceso remoto desde celular/PC"> Acceso remoto desde celular/PC</label>
+      <label class="svc-opt"><input type="checkbox" value="Grabación en la nube o en sitio"> Grabación en la nube o en sitio</label>
+      <label class="svc-opt svc-opt-general"><input type="checkbox" class="opt-general" value="Otros"> Otros</label>
+    </div>
+    <div class="svc-detalle">
+      <label>Describe al detalle el problema o requerimiento</label>
+      <textarea class="detalle-text" placeholder="Cuéntanos cuántas cámaras necesitas y dónde..."></textarea>
     </div>
   </div>
   </div>
