@@ -110,6 +110,38 @@
   .stack-item strong{display:block; font-size:15.5px; color:var(--navy); font-weight:800; margin-bottom:6px;}
   .stack-item p{font-size:13px; color:var(--ink-soft); margin:0;}
 
+  /* ===== CARRUSEL DE ESTANDARES ===== */
+  .frameworks-section{overflow:hidden; padding:44px 0;}
+  .carousel-track-wrap{
+    overflow:hidden; position:relative;
+    -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  }
+  .carousel-track{
+    display:flex; align-items:center; width:max-content;
+    animation:scrollFrameworks 26s linear infinite;
+  }
+  .carousel-track-wrap:hover .carousel-track{animation-play-state:paused;}
+  @keyframes scrollFrameworks{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-33.3333%);}
+  }
+  .fw-item{
+    flex:0 0 auto;
+    display:flex; align-items:center; gap:10px;
+    font-size:22px; font-weight:800; letter-spacing:-0.01em;
+    color:#B7C2CB; white-space:nowrap;
+    transition:color .2s ease;
+    cursor:default;
+    margin-right:64px;
+  }
+  .fw-item:hover{color:var(--navy);}
+  .fw-icon{width:26px; height:26px; flex-shrink:0; color:inherit;}
+
+  @media (prefers-reduced-motion: reduce){
+    .carousel-track{animation:none;}
+  }
+
   .compare{display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--line); border-radius:14px; overflow:hidden;}
   .compare > div{padding:26px 26px;}
   .compare-no{background:#fff; border-right:1px solid var(--line);}
@@ -355,6 +387,51 @@
           <span class="stack-cat">INFRAESTRUCTURA</span>
           <strong>Linux · Windows Server</strong>
           <p>Administración, hardening y mantenimiento de servidores en producción.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="frameworks-section">
+    <div class="carousel-track-wrap">
+      <div class="carousel-track">
+        <div class="fw-item">
+          <svg class="fw-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L20 5.5 V11 C20 16 16.5 19.5 12 21 C7.5 19.5 4 16 4 11 V5.5 Z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10.2 11V9a1.8 1.8 0 0 1 3.6 0v2"/></svg>
+          <span>ISO/IEC 27001</span>
+        </div>
+        <div class="fw-item">
+          <svg class="fw-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.3"/><path d="m8 12.3 2.6 2.6L16.2 9"/></svg>
+          <span>NIST</span>
+        </div>
+        <div class="fw-item">
+          <svg class="fw-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 20 7 12 11 4 7Z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg>
+          <span>CIS Controls</span>
+        </div>
+        <!-- Duplicado para loop continuo -->
+        <div class="fw-item">
+          <svg class="fw-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L20 5.5 V11 C20 16 16.5 19.5 12 21 C7.5 19.5 4 16 4 11 V5.5 Z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10.2 11V9a1.8 1.8 0 0 1 3.6 0v2"/></svg>
+          <span>ISO/IEC 27001</span>
+        </div>
+        <div class="fw-item">
+          <svg class="fw-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.3"/><path d="m8 12.3 2.6 2.6L16.2 9"/></svg>
+          <span>NIST</span>
+        </div>
+        <div class="fw-item">
+          <svg class="fw-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 20 7 12 11 4 7Z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg>
+          <span>CIS Controls</span>
+        </div>
+
+        <div class="fw-item">
+          <svg class="fw-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L20 5.5 V11 C20 16 16.5 19.5 12 21 C7.5 19.5 4 16 4 11 V5.5 Z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10.2 11V9a1.8 1.8 0 0 1 3.6 0v2"/></svg>
+          <span>ISO/IEC 27001</span>
+        </div>
+        <div class="fw-item">
+          <svg class="fw-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.3"/><path d="m8 12.3 2.6 2.6L16.2 9"/></svg>
+          <span>NIST</span>
+        </div>
+        <div class="fw-item">
+          <svg class="fw-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 20 7 12 11 4 7Z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg>
+          <span>CIS Controls</span>
         </div>
       </div>
     </div>
