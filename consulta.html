@@ -91,6 +91,17 @@
     width:100%; border:1.5px solid var(--line-strong); border-radius:8px; padding:10px 12px;
     font-family:inherit; font-size:13.5px; color:var(--ink); background:#fff; resize:vertical; min-height:60px;
   }
+  .svc-detalle-send{
+    display:flex; align-items:center; gap:10px; margin-top:12px; flex-wrap:wrap;
+  }
+  .btn-detalle-enviar{
+    display:inline-flex; align-items:center; gap:8px; padding:10px 18px; border-radius:8px;
+    font-weight:700; font-size:13.5px; border:none; cursor:pointer; text-decoration:none;
+    background:#25D366; color:#fff;
+  }
+  .btn-detalle-enviar:hover{background:#1EBE5A;}
+  .detalle-error{color:#C4432B; font-size:12px; display:none;}
+  .detalle-error.show{display:block;}
 
   .svc-networking{--card-accent:#5B4FC7; --card-accent-bg:rgba(91,79,199,0.07);}
   .svc-sysadmin{--card-accent:#B4700A; --card-accent-bg:rgba(180,112,10,0.07);}
@@ -174,6 +185,13 @@
     <div class="svc-detalle">
       <label>Describe al detalle el problema o requerimiento</label>
       <textarea class="detalle-text" placeholder="Cuéntanos cuántas cámaras necesitas y dónde..."></textarea>
+    <div class="svc-detalle-send">
+        <button type="button" class="btn-detalle-enviar btn-enviar-otros">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.87.51 3.622 1.398 5.122L2 22l4.998-1.372a9.96 9.96 0 0 0 5.006 1.351h.004c5.518 0 10.004-4.486 10.004-10.004C22.012 6.457 17.526 2 12.004 2zm0 18.155h-.003a8.14 8.14 0 0 1-4.152-1.14l-.298-.177-3.087.848.834-3.032-.194-.31a8.14 8.14 0 0 1-1.256-4.34c0-4.51 3.66-8.171 8.16-8.171 2.18 0 4.228.85 5.768 2.393a8.11 8.11 0 0 1 2.39 5.772c0 4.51-3.662 8.157-8.162 8.157z"/></svg>
+          Enviar por WhatsApp
+        </button>
+      </div>
+      <div class="detalle-error">Completa tus datos arriba antes de enviar.</div>
     </div>
   </div>
 
@@ -195,6 +213,13 @@
     <div class="svc-detalle">
       <label>Describe al detalle el problema o requerimiento</label>
       <textarea class="detalle-text" placeholder="Cuéntanos qué está pasando con tu red..."></textarea>
+    <div class="svc-detalle-send">
+        <button type="button" class="btn-detalle-enviar btn-enviar-otros">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.87.51 3.622 1.398 5.122L2 22l4.998-1.372a9.96 9.96 0 0 0 5.006 1.351h.004c5.518 0 10.004-4.486 10.004-10.004C22.012 6.457 17.526 2 12.004 2zm0 18.155h-.003a8.14 8.14 0 0 1-4.152-1.14l-.298-.177-3.087.848.834-3.032-.194-.31a8.14 8.14 0 0 1-1.256-4.34c0-4.51 3.66-8.171 8.16-8.171 2.18 0 4.228.85 5.768 2.393a8.11 8.11 0 0 1 2.39 5.772c0 4.51-3.662 8.157-8.162 8.157z"/></svg>
+          Enviar por WhatsApp
+        </button>
+      </div>
+      <div class="detalle-error">Completa tus datos arriba antes de enviar.</div>
     </div>
   </div>
 
@@ -216,6 +241,13 @@
     <div class="svc-detalle">
       <label>Describe al detalle el problema o requerimiento</label>
       <textarea class="detalle-text" placeholder="Cuéntanos qué está pasando con tu equipo o servidores..."></textarea>
+    <div class="svc-detalle-send">
+        <button type="button" class="btn-detalle-enviar btn-enviar-otros">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.87.51 3.622 1.398 5.122L2 22l4.998-1.372a9.96 9.96 0 0 0 5.006 1.351h.004c5.518 0 10.004-4.486 10.004-10.004C22.012 6.457 17.526 2 12.004 2zm0 18.155h-.003a8.14 8.14 0 0 1-4.152-1.14l-.298-.177-3.087.848.834-3.032-.194-.31a8.14 8.14 0 0 1-1.256-4.34c0-4.51 3.66-8.171 8.16-8.171 2.18 0 4.228.85 5.768 2.393a8.11 8.11 0 0 1 2.39 5.772c0 4.51-3.662 8.157-8.162 8.157z"/></svg>
+          Enviar por WhatsApp
+        </button>
+      </div>
+      <div class="detalle-error">Completa tus datos arriba antes de enviar.</div>
     </div>
   </div>
 
@@ -237,6 +269,13 @@
     <div class="svc-detalle">
       <label>Describe al detalle el problema o requerimiento</label>
       <textarea class="detalle-text" placeholder="Cuéntanos qué sistema necesitas y para qué..."></textarea>
+    <div class="svc-detalle-send">
+        <button type="button" class="btn-detalle-enviar btn-enviar-otros">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.87.51 3.622 1.398 5.122L2 22l4.998-1.372a9.96 9.96 0 0 0 5.006 1.351h.004c5.518 0 10.004-4.486 10.004-10.004C22.012 6.457 17.526 2 12.004 2zm0 18.155h-.003a8.14 8.14 0 0 1-4.152-1.14l-.298-.177-3.087.848.834-3.032-.194-.31a8.14 8.14 0 0 1-1.256-4.34c0-4.51 3.66-8.171 8.16-8.171 2.18 0 4.228.85 5.768 2.393a8.11 8.11 0 0 1 2.39 5.772c0 4.51-3.662 8.157-8.162 8.157z"/></svg>
+          Enviar por WhatsApp
+        </button>
+      </div>
+      <div class="detalle-error">Completa tus datos arriba antes de enviar.</div>
     </div>
   </div>
 
@@ -258,6 +297,13 @@
     <div class="svc-detalle">
       <label>Describe al detalle el problema o requerimiento</label>
       <textarea class="detalle-text" placeholder="Cuéntanos qué te preocupa sobre tu seguridad..."></textarea>
+    <div class="svc-detalle-send">
+        <button type="button" class="btn-detalle-enviar btn-enviar-otros">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.87.51 3.622 1.398 5.122L2 22l4.998-1.372a9.96 9.96 0 0 0 5.006 1.351h.004c5.518 0 10.004-4.486 10.004-10.004C22.012 6.457 17.526 2 12.004 2zm0 18.155h-.003a8.14 8.14 0 0 1-4.152-1.14l-.298-.177-3.087.848.834-3.032-.194-.31a8.14 8.14 0 0 1-1.256-4.34c0-4.51 3.66-8.171 8.16-8.171 2.18 0 4.228.85 5.768 2.393a8.11 8.11 0 0 1 2.39 5.772c0 4.51-3.662 8.157-8.162 8.157z"/></svg>
+          Enviar por WhatsApp
+        </button>
+      </div>
+      <div class="detalle-error">Completa tus datos arriba antes de enviar.</div>
     </div>
   </div>
 
@@ -278,6 +324,13 @@
     <div class="svc-detalle">
       <label>Describe al detalle el problema o requerimiento</label>
       <textarea class="detalle-text" placeholder="Cuéntanos qué está pasando..."></textarea>
+    <div class="svc-detalle-send">
+        <button type="button" class="btn-detalle-enviar btn-enviar-otros">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.87.51 3.622 1.398 5.122L2 22l4.998-1.372a9.96 9.96 0 0 0 5.006 1.351h.004c5.518 0 10.004-4.486 10.004-10.004C22.012 6.457 17.526 2 12.004 2zm0 18.155h-.003a8.14 8.14 0 0 1-4.152-1.14l-.298-.177-3.087.848.834-3.032-.194-.31a8.14 8.14 0 0 1-1.256-4.34c0-4.51 3.66-8.171 8.16-8.171 2.18 0 4.228.85 5.768 2.393a8.11 8.11 0 0 1 2.39 5.772c0 4.51-3.662 8.157-8.162 8.157z"/></svg>
+          Enviar por WhatsApp
+        </button>
+      </div>
+      <div class="detalle-error">Completa tus datos arriba antes de enviar.</div>
     </div>
   </div>
 
@@ -298,6 +351,13 @@
     <div class="svc-detalle">
       <label>Describe al detalle el problema o requerimiento</label>
       <textarea class="detalle-text" placeholder="Cuéntanos qué tarea manual quieres automatizar..."></textarea>
+    <div class="svc-detalle-send">
+        <button type="button" class="btn-detalle-enviar btn-enviar-otros">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.87.51 3.622 1.398 5.122L2 22l4.998-1.372a9.96 9.96 0 0 0 5.006 1.351h.004c5.518 0 10.004-4.486 10.004-10.004C22.012 6.457 17.526 2 12.004 2zm0 18.155h-.003a8.14 8.14 0 0 1-4.152-1.14l-.298-.177-3.087.848.834-3.032-.194-.31a8.14 8.14 0 0 1-1.256-4.34c0-4.51 3.66-8.171 8.16-8.171 2.18 0 4.228.85 5.768 2.393a8.11 8.11 0 0 1 2.39 5.772c0 4.51-3.662 8.157-8.162 8.157z"/></svg>
+          Enviar por WhatsApp
+        </button>
+      </div>
+      <div class="detalle-error">Completa tus datos arriba antes de enviar.</div>
     </div>
   </div>
 
@@ -318,6 +378,13 @@
     <div class="svc-detalle">
       <label>Describe al detalle el problema o requerimiento</label>
       <textarea class="detalle-text" placeholder="Cuéntanos qué necesita tu equipo..."></textarea>
+    <div class="svc-detalle-send">
+        <button type="button" class="btn-detalle-enviar btn-enviar-otros">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.87.51 3.622 1.398 5.122L2 22l4.998-1.372a9.96 9.96 0 0 0 5.006 1.351h.004c5.518 0 10.004-4.486 10.004-10.004C22.012 6.457 17.526 2 12.004 2zm0 18.155h-.003a8.14 8.14 0 0 1-4.152-1.14l-.298-.177-3.087.848.834-3.032-.194-.31a8.14 8.14 0 0 1-1.256-4.34c0-4.51 3.66-8.171 8.16-8.171 2.18 0 4.228.85 5.768 2.393a8.11 8.11 0 0 1 2.39 5.772c0 4.51-3.662 8.157-8.162 8.157z"/></svg>
+          Enviar por WhatsApp
+        </button>
+      </div>
+      <div class="detalle-error">Completa tus datos arriba antes de enviar.</div>
     </div>
   </div>
 
@@ -340,19 +407,18 @@
     <div class="svc-detalle">
       <label>Describe al detalle el problema o requerimiento</label>
       <textarea class="detalle-text" placeholder="Cuéntanos qué necesitas ordenar en tu área de TI..."></textarea>
+    <div class="svc-detalle-send">
+        <button type="button" class="btn-detalle-enviar btn-enviar-otros">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.87.51 3.622 1.398 5.122L2 22l4.998-1.372a9.96 9.96 0 0 0 5.006 1.351h.004c5.518 0 10.004-4.486 10.004-10.004C22.012 6.457 17.526 2 12.004 2zm0 18.155h-.003a8.14 8.14 0 0 1-4.152-1.14l-.298-.177-3.087.848.834-3.032-.194-.31a8.14 8.14 0 0 1-1.256-4.34c0-4.51 3.66-8.171 8.16-8.171 2.18 0 4.228.85 5.768 2.393a8.11 8.11 0 0 1 2.39 5.772c0 4.51-3.662 8.157-8.162 8.157z"/></svg>
+          Enviar por WhatsApp
+        </button>
+      </div>
+      <div class="detalle-error">Completa tus datos arriba antes de enviar.</div>
     </div>
   </div>
   </div>
 
-  <div class="error" id="errorMsg">Completa tus datos y selecciona un servicio antes de enviar.</div>
-
-  <div class="send-box">
-    <p>Listo, enviar.</p>
-    <button type="button" class="btn" id="btnEnviar">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.87.51 3.622 1.398 5.122L2 22l4.998-1.372a9.96 9.96 0 0 0 5.006 1.351h.004c5.518 0 10.004-4.486 10.004-10.004C22.012 6.457 17.526 2 12.004 2zm0 18.155h-.003a8.14 8.14 0 0 1-4.152-1.14l-.298-.177-3.087.848.834-3.032-.194-.31a8.14 8.14 0 0 1-1.256-4.34c0-4.51 3.66-8.171 8.16-8.171 2.18 0 4.228.85 5.768 2.393a8.11 8.11 0 0 1 2.39 5.772c0 4.51-3.662 8.157-8.162 8.157z"/></svg>
-      Enviar por WhatsApp
-    </button>
-  </div>
+  <div class="error" id="errorMsg">Selecciona un servicio antes de enviar.</div>
 </div>
 
 <script>
@@ -440,8 +506,8 @@
     });
   });
 
-  // --- Envío ---
-  document.getElementById('btnEnviar').addEventListener('click', function(){
+  // --- Envío (reutilizable: desde un bloque de servicio con "Otros" marcado) ---
+  function enviarWhatsApp(block, detalleErrorEl){
     var empresa = document.getElementById('empresa').value.trim();
     var colaboradores = document.getElementById('colaboradores').value.trim();
     var nombre = document.getElementById('nombre').value.trim();
@@ -453,21 +519,18 @@
     }
     datosError.classList.remove('show');
 
-    var selectedBlock = null;
-    allServices.forEach(function(block){
-      if (block.querySelector('.svc-check').checked) selectedBlock = block;
-    });
-
-    if (!selectedBlock) {
+    if (!block || !block.querySelector('.svc-check').checked) {
+      if (detalleErrorEl) detalleErrorEl.classList.add('show');
       errorMsg.classList.add('show');
       return;
     }
     errorMsg.classList.remove('show');
+    if (detalleErrorEl) detalleErrorEl.classList.remove('show');
 
-    var serviceName = selectedBlock.querySelector('.svc-check').getAttribute('data-service');
-    var checkedOpts = selectedBlock.querySelectorAll('.svc-opt input:checked');
+    var serviceName = block.querySelector('.svc-check').getAttribute('data-service');
+    var checkedOpts = block.querySelectorAll('.svc-opt input:checked');
     var optValues = Array.prototype.map.call(checkedOpts, function(el){ return el.value; });
-    var detalleText = selectedBlock.querySelector('.detalle-text').value.trim();
+    var detalleText = block.querySelector('.detalle-text').value.trim();
 
     var lines = [];
     lines.push('Hola, quisiera una evaluación con SuricataOps.');
@@ -487,6 +550,15 @@
     var text = lines.join('\n');
     var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(text);
     window.open(url, '_blank');
+  }
+
+  // Conecta el botón de WhatsApp que aparece dentro de cada bloque "Otros"
+  document.querySelectorAll('.btn-enviar-otros').forEach(function(btn){
+    var block = btn.closest('.svc');
+    var detalleErrorEl = btn.closest('.svc-detalle').querySelector('.detalle-error');
+    btn.addEventListener('click', function(){
+      enviarWhatsApp(block, detalleErrorEl);
+    });
   });
 })();
 </script>
