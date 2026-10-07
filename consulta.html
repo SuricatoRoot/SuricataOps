@@ -104,6 +104,11 @@
   .detalle-error{color:#C4432B; font-size:12px; display:none; width:100%;}
   .detalle-error.show{display:block;}
 
+  .svc-camaras{--card-accent:#374151; --card-accent-bg:rgba(55,65,81,0.06);}
+  .svc-opt.opt-soon{opacity:0.55; cursor:not-allowed;}
+  .svc-opt.opt-soon input{cursor:not-allowed;}
+  .soon-badge{display:inline-block; font-family:'JetBrains Mono',monospace; font-size:9.5px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; background:#FBF1E4; color:#B4700A; border-radius:20px; padding:2px 8px; margin-left:6px; vertical-align:1px;}
+  .svc-head .soon-badge{margin-left:0; margin-top:4px;}
   .svc-networking{--card-accent:#5B4FC7; --card-accent-bg:rgba(91,79,199,0.07);}
   .svc-sysadmin{--card-accent:#B4700A; --card-accent-bg:rgba(180,112,10,0.07);}
   .svc-implementacion{--card-accent:#C4287A; --card-accent-bg:rgba(196,40,122,0.06);}
@@ -166,6 +171,35 @@
 
   <div id="servicesWrap" class="services-locked">
   <div class="services-title">Seleccionar requerimiento</div>
+
+  <div class="svc svc-camaras" data-key="camaras">
+    <label class="svc-head">
+      <input type="checkbox" class="svc-check" data-service="Seguridad física - Cámaras de seguridad (soporte de software)">
+      <div class="svc-titles">
+        <span class="svc-tag">SEGURIDAD FÍSICA</span>
+        <span class="svc-name">Cámaras de seguridad</span>
+        <span class="soon-badge" style="background:#E8F5EF;color:#1D9A6C;">Soporte de software</span>
+      </div>
+    </label>
+    <div class="svc-options">
+      <label class="svc-opt"><input type="checkbox" value="Configuración de cámaras y grabador (DVR/NVR)"> Configuración de cámaras y grabador (DVR/NVR)</label>
+      <label class="svc-opt"><input type="checkbox" value="Acceso remoto desde celular/PC"> Acceso remoto desde celular/PC</label>
+      <label class="svc-opt"><input type="checkbox" value="Recuperación de cuenta o contraseña"> Recuperación de cuenta o contraseña</label>
+      <label class="svc-opt opt-soon" title="Disponible próximamente"><input type="checkbox" disabled> Instalación desde cero <span class="soon-badge">Próximamente</span></label>
+      <label class="svc-opt svc-opt-general"><input type="checkbox" class="opt-general" value="Otros"> Otros</label>
+    </div>
+    <div class="svc-detalle">
+      <label>Describe al detalle el problema o requerimiento</label>
+      <textarea class="detalle-text" placeholder="Cuéntanos la marca de tus cámaras o grabador y qué está fallando..."></textarea>
+    </div>
+    <div class="svc-send-wrap">
+      <button type="button" class="btn-detalle-enviar btn-enviar-svc">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.87.51 3.622 1.398 5.122L2 22l4.998-1.372a9.96 9.96 0 0 0 5.006 1.351h.004c5.518 0 10.004-4.486 10.004-10.004C22.012 6.457 17.526 2 12.004 2zm0 18.155h-.003a8.14 8.14 0 0 1-4.152-1.14l-.298-.177-3.087.848.834-3.032-.194-.31a8.14 8.14 0 0 1-1.256-4.34c0-4.51 3.66-8.171 8.16-8.171 2.18 0 4.228.85 5.768 2.393a8.11 8.11 0 0 1 2.39 5.772c0 4.51-3.662 8.157-8.162 8.157z"/></svg>
+        Enviar por WhatsApp
+      </button>
+      <div class="detalle-error">Completa tus datos arriba antes de enviar.</div>
+    </div>
+  </div>
 
   <div class="svc svc-networking" data-key="networking">
     <label class="svc-head">
