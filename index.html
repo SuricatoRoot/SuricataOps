@@ -105,6 +105,18 @@
   .sc-networking{--card-accent:#5B4FC7; --card-accent-bg:rgba(91,79,199,0.09); flex:1 1 calc(50% - 10px);}
   .sc-implementacion{--card-accent:#C4287A; --card-accent-bg:rgba(196,40,122,0.08); flex:1 1 calc(50% - 10px);}
   .sc-capacitacion{--card-accent:#D9534F; --card-accent-bg:rgba(217,83,79,0.08); flex:1 1 calc(25% - 15px);}
+  .sc-camaras{--card-accent:#374151; --card-accent-bg:rgba(55,65,81,0.08); flex:1 1 100%;}
+  .cam-cols{display:flex; gap:16px; flex-wrap:wrap; margin-top:16px;}
+  .cam-col{flex:1 1 260px; border-radius:10px; padding:14px 16px; border:1px solid var(--line); background:#fff;}
+  .cam-col .cam-state{display:inline-block; font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; padding:3px 9px; border-radius:20px; margin-bottom:8px;}
+  .cam-col.on .cam-state{background:#E8F5EF; color:#1D9A6C;}
+  .cam-col.soon{background:#F7F8FA; border-style:dashed;}
+  .cam-col.soon .cam-state{background:#FBF1E4; color:#B4700A;}
+  .cam-col h4{font-size:15px; font-weight:800; color:var(--navy); margin-bottom:6px;}
+  .cam-col ul{list-style:none; margin:0; padding:0;}
+  .cam-col li{font-size:13.5px; color:var(--ink-soft); padding-left:16px; position:relative; margin-bottom:4px;}
+  .cam-col li::before{content:''; position:absolute; left:2px; top:8px; width:6px; height:6px; border-radius:2px; background:var(--card-accent);}
+  .cam-col.soon p{font-size:13.5px; color:var(--ink-soft); margin:0;}
 
   .stack-grid{display:flex; flex-wrap:wrap; gap:16px;}
   .stack-item{
@@ -293,6 +305,36 @@
           <span class="tag">SCRIPTING</span>
           <h3>Automatización de procesos</h3>
           <p class="sc-summary">Backups, alertas y reportes automáticos, sin tareas manuales ni horas perdidas.</p>
+        </div>
+
+      </div>
+
+      <div class="svc-group-label">Seguridad física</div>
+      <div class="servicios-grid">
+
+        <div class="servicio-card sc-camaras">
+          <div class="sc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5a2 2 0 0 1 2-2h8l3-2.5v9L13 10.5H5a2 2 0 0 1-2-2v0z"/><circle cx="18.5" cy="15.5" r="3.2"/><path d="M17.3 15.5h2.4M18.5 14.3v2.4"/></svg>
+          </div>
+          <span class="tag">SEGURIDAD FÍSICA</span>
+          <h3>Cámaras de seguridad</h3>
+          <p class="sc-summary">¿Ya tienes cámaras en tu negocio pero no las ves en el celular, perdiste la contraseña o no graban bien? Lo resolvemos.</p>
+          <div class="cam-cols">
+            <div class="cam-col on">
+              <span class="cam-state">Disponible</span>
+              <h4>Soporte de software</h4>
+              <ul>
+                <li>Configuración de cámaras y grabador (DVR/NVR)</li>
+                <li>Acceso remoto desde tu celular o PC</li>
+                <li>Recuperación de cuenta y contraseña</li>
+              </ul>
+            </div>
+            <div class="cam-col soon">
+              <span class="cam-state">Próximamente</span>
+              <h4>Instalación desde cero</h4>
+              <p>Muy pronto podrás pedirnos la instalación completa de tu sistema de cámaras.</p>
+            </div>
+          </div>
         </div>
 
       </div>
