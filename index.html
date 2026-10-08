@@ -225,6 +225,15 @@
     .wrap{padding:0 20px;}
     .nav{padding:14px 20px;}
   }
+  .sc-winserver{--card-accent:#2563A8; --card-accent-bg:rgba(37,99,168,0.08); flex:1 1 100%;}
+  .ws-cols{display:flex; gap:16px; flex-wrap:wrap; margin-top:18px;}
+  .ws-col{flex:1 1 220px; background:#fff; border:1px solid var(--line); border-radius:10px; padding:14px 16px;}
+  .ws-col h4{font-size:14.5px; font-weight:800; color:var(--navy); margin-bottom:8px;}
+  .ws-col ul{list-style:none; margin:0; padding:0;}
+  .ws-col li{font-size:13.5px; color:var(--ink-soft); padding-left:16px; position:relative; margin-bottom:5px;}
+  .ws-col li::before{content:''; position:absolute; left:2px; top:8px; width:6px; height:6px; border-radius:2px; background:var(--card-accent);}
+  .ws-tech{display:flex; flex-wrap:wrap; gap:6px; margin-top:16px;}
+  .ws-tech span{font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; color:var(--card-accent); background:var(--card-accent-bg); border-radius:5px; padding:3px 8px;}
 </style>
 </head>
 <body>
@@ -341,6 +350,43 @@
           <span class="tag">SCRIPTING</span>
           <h3>Automatización de procesos</h3>
           <p class="sc-summary">Backups, alertas y reportes automáticos, sin tareas manuales ni horas perdidas.</p>
+        </div>
+
+
+        <div class="servicio-card sc-winserver">
+          <div class="sc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="7" rx="1.5"/><rect x="3" y="14" width="18" height="7" rx="1.5"/><path d="M7 6.5h.01M7 17.5h.01M11 6.5h6M11 17.5h6"/></svg>
+          </div>
+          <span class="tag">WINDOWS SERVER</span>
+          <h3>Administración de Windows Server</h3>
+          <p class="sc-summary">Instalamos, configuramos y mantenemos tu servidor Windows Server 2022 para que usuarios, archivos, impresoras y copias de seguridad se gestionen desde un solo lugar.</p>
+          <div class="ws-cols">
+            <div class="ws-col">
+              <h4>Usuarios y accesos</h4>
+              <ul>
+                <li>Dominio y cuentas de usuario centralizadas</li>
+                <li>Políticas de seguridad para todos los equipos</li>
+                <li>Altas y bajas de personal sin cuentas olvidadas</li>
+              </ul>
+            </div>
+            <div class="ws-col">
+              <h4>Red y archivos</h4>
+              <ul>
+                <li>Carpetas compartidas con permisos por área</li>
+                <li>Impresoras centralizadas en red</li>
+                <li>Escritorio remoto y VPN para trabajar fuera</li>
+              </ul>
+            </div>
+            <div class="ws-col">
+              <h4>Continuidad y protección</h4>
+              <ul>
+                <li>Copias de seguridad programadas</li>
+                <li>Actualizaciones controladas en toda la red</li>
+                <li>Cifrado de discos y máquinas virtuales</li>
+              </ul>
+            </div>
+          </div>
+          <div class="ws-tech"><span>AD DS</span><span>GPO</span><span>DNS</span><span>DHCP</span><span>File Server</span><span>Print Server</span><span>RDS</span><span>WSUS</span><span>Windows Server Backup</span><span>BitLocker</span><span>Hyper-V</span></div>
         </div>
 
       </div>
